@@ -7,7 +7,7 @@ Potion God provides an intuitive interface for managing game automation features
 - **Window Detection** - Locate and capture game windows
 - **Asset Recognition** - Detect game board elements
 - **Game Analysis** - Analyze current game state
-- **Bot Control** - Start/stop automation processes
+- **Bot Control** - Auto Drop Potions in correct locations.
 
 ## ✨ Features
 
@@ -16,7 +16,17 @@ Potion God provides an intuitive interface for managing game automation features
 - **Status Indicators** - Visual feedback for all system states
 - **Responsive Layout** - Adaptive UI that scales with window size
 
-## 🚀 Quick Start
+## � Screenshots
+
+### Main Tool Interface
+
+![Potion God Tool Interface](README_tool_image.png)
+
+### Overlay Feature
+
+![Game Overlay](README_overlay_image.png)
+
+## �🚀 Quick Start
 
 ### Prerequisites
 
@@ -70,17 +80,11 @@ scripts\run_gui.bat
 
 1. **Launch** the application using one of the methods above
 2. **Find Game Window** - Click to detect the target game window
-3. **Capture Screen** - Take a screenshot for analysis
-4. **Use Controls** - Access various automation features from the sidebar
+3. **Object Recognition** - Load ROI boxes, right click for overlay
+4. **Find Next Pair** - Run prior to auto-potion drop
+5. **Auto Potion Drop** - Once pressed, place the first piece manaully then press enter to start
 
 ### Interface Overview
-
-#### Sidebar Controls
-
-- **🪟 Window Detection** - Find and capture game windows
-- **🎯 Asset Recognition** - Detect game board elements
-- **🔍 Game Analysis** - Analyze current game state
-- **🤖 Bot Control** - Start/stop automation
 
 #### Main Panel
 
@@ -95,29 +99,6 @@ The activity log uses color-coded messages:
 - **✅ Success** - Successful operations (Green)
 - **⚠️ Warning** - Warnings and alerts (Orange)
 - **❌ Error** - Errors and failures (Red)
-
-## � Project Structure
-
-```
-PotionGod/
-├── src/                 # Source code
-│   └── gui.py          # Main GUI application
-├── docs/               # Documentation
-│   ├── README.md       # This file
-│   ├── CHANGELOG.md    # Version history
-│   ├── LICENSE         # License information
-│   └── game docs/      # Game-related documentation
-├── assets/             # Game assets and images
-│   ├── board/          # Board-related images
-│   └── ingredients/    # Ingredient token images
-├── scripts/            # Build and utility scripts
-│   └── run_gui.bat     # Application launcher
-├── .venv/              # Virtual environment (not in git)
-├── .gitignore          # Git ignore rules
-├── requirements.txt    # Python dependencies
-├── run.bat             # Quick launcher
-└── VERSION             # Version identifier
-```
 
 ## �🛠️ Development
 
@@ -150,12 +131,6 @@ FONTS = {
     # ... more font styles
 }
 ```
-
-## 📦 Dependencies
-
-- **customtkinter** - Modern UI framework
-- **tkinter** - Base GUI toolkit (included with Python)
-- **pillow** - Image processing capabilities
 
 ## 🔧 Configuration
 
