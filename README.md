@@ -2,7 +2,67 @@
 
 ## 📋 Overview
 
-Potion God provides an intuitive interface for managing game automation features including:
+Potion God provides an intuitive interface for managing game autom- **⚠️ Warning** - Warnings and alerts (Orange)
+
+- **❌ Error** - Errors and failures (Red)
+
+## ⚙️ Settings
+
+### Accessing Settings
+
+Click the **⚙️ Settings** button in the main interface to open the settings window, which includes:
+
+#### Advanced Settings - Timing Delays Configuration
+
+The **Advanced** tab provides comprehensive control over automation timing:
+
+- **📂 Load Config** - Load delays configuration from a JSON file
+- **👁️ View & Edit** - Open the configuration editor to modify timing values
+- **💾 Save Config** - Save current configuration to `configuration/delays.json`
+- **🔄 Reset to Defaults** - Restore default timing values
+
+#### Configurable Timing Parameters
+
+**Key Polling**
+
+- `enter_poll_ms` - How often to check for Enter/Esc key presses
+- `enter_timeout_s` - Timeout for key press detection
+- `loop_enter_timeout_s` - Timeout for loop key detection
+
+**Mouse Movement & Clicks**
+
+- `mouse_move_duration_ms` - Smooth mouse movement time
+- `mouse_jitter_px` - Random pixel jitter for natural movement
+- `pre_left_click_sleep_ms` - Pause before left clicking
+- `left_click_hold_ms` - Duration to hold left mouse button
+- `post_left_click_sleep_ms` - Pause after left clicking
+- `pre_right_click_sleep_ms` - Pause before right clicking (piece rotation)
+- `right_click_hold_ms` - Duration to hold right mouse button
+- `flip_click_delay_ms` - Delay after piece rotation
+
+**Automation Timing**
+
+- `post_enter_settle_ms` - Wait time after initial Enter key
+- `rescan_after_drop_delay_ms` - Pause between drops for game updates
+- `auto_loop_interval_ms` - Time between automated drops (default: 2000ms)
+- `post_drop_sleep_ms` - Brief pause after dropping pieces
+
+**Validation & Error Handling**
+
+- `validation_mouse_park_delay_ms` - Delay before piece validation
+- `validation_initial_delay_ms` - Initial wait before validation attempts
+- `validation_retry_delay_ms` - Delay between validation retries
+- `validation_max_attempts` - Maximum validation attempts before failure
+
+#### Pair-Specific Overrides
+
+Advanced users can configure specific timing overrides for different piece combinations in the `pair_overrides` section.
+
+### Configuration File Location
+
+Settings are stored in: `configuration/delays.json`
+
+🛠️ Developmentn features including:
 
 - **Window Detection** - Locate and capture game windows
 - **Asset Recognition** - Detect game board elements

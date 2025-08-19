@@ -14,8 +14,9 @@ Features:
 - Bot control with start/stop operations
 - Real-time activity logging with color-coded messages
 - Responsive layout with sidebar controls and main content area
+- Advanced settings panel with timing configuration
 
-Version: 1.0
+Version: 1.1.0
 """
 
 import customtkinter as ctk
