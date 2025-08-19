@@ -66,6 +66,10 @@ def _consume_key_press(vk_code: int) -> bool:
     """True if key was pressed since last call (low-order bit)."""
     return (GetAsyncKeyState(vk_code) & 0x0001) != 0
 
+def _check_escape_pressed() -> bool:
+    """Check if escape key is currently pressed or was pressed since last check."""
+    return (GetAsyncKeyState(VK_ESCAPE) & 0x8000) != 0 or _consume_key_press(VK_ESCAPE)
+
 # -------- helpers ----------
 def _default_log(msg: str, level: str = "INFO"):
     print(f"[{level}] {msg}")
@@ -252,7 +256,7 @@ class DropPieceController:
         poll = int(self.cfg.get("enter_poll_ms") or 30)
         end = time.time() + max(0, ms)/1000.0
         while time.time() < end:
-            if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) or _consume_key_press(VK_ESCAPE):
+            if _check_escape_pressed():
                 while (GetAsyncKeyState(VK_ESCAPE) & 0x8000): time.sleep(0.01)
                 return True
             time.sleep(min(poll, max(1, int((end-time.time())*1000)))/1000.0)
@@ -340,6 +344,11 @@ class DropPieceController:
         
         # Try validation multiple times
         for attempt in range(max_attempts):
+            # Check for escape before each validation attempt
+            if _check_escape_pressed():
+                self.log("Validation interrupted by user (Esc)", "INFO")
+                return False
+                
             try:
                 validation_result = self.recog.detect_validation_pieces()
                 if not validation_result:
@@ -384,6 +393,11 @@ class DropPieceController:
     def _detect_next_pair_once(self) -> Optional[str]:
         max_retries = 3
         for attempt in range(max_retries):
+            # Check for escape before each detection attempt
+            if _check_escape_pressed():
+                self.log("Piece detection interrupted by user (Esc)", "INFO")
+                return None
+                
             try:
                 out = self.recog.detect_next_pieces()
                 L = (out.get("next_piece_left")  or {}).get("label", "Unknown")
@@ -408,16 +422,31 @@ class DropPieceController:
         return None
 
     def _drop_pair(self, pair:str, allow_flip:bool=True, validate_before_drop:bool=True) -> bool:
+        # Check for escape at the start of drop operation
+        if _check_escape_pressed():
+            self.log("Drop operation interrupted by user (Esc)", "INFO")
+            return False
+            
         # Validate pieces are ready before attempting to drop
         if validate_before_drop:
             if not self._validate_pieces_ready(pair):
                 self.log(f"Piece validation failed for pair '{pair}' - skipping drop", "ERROR")
                 return False
         
+        # Check for escape after validation
+        if _check_escape_pressed():
+            self.log("Drop operation interrupted by user (Esc)", "INFO")
+            return False
+        
         # Add retry logic for getting window rect
         max_retries = 3
         rect = None
         for attempt in range(max_retries):
+            # Check for escape before each window detection attempt
+            if _check_escape_pressed():
+                self.log("Drop operation interrupted by user (Esc)", "INFO")
+                return False
+                
             rect = self.detector.get_window_rect(kind="client")
             if rect:
                 break
@@ -517,7 +546,16 @@ class DropPieceController:
             self.log("⏳ Scanning next pair…", "INFO")
             next_pair = self._detect_next_pair_once()
             if not next_pair:
-                self.log("Stopping: failed to detect next pair.", "ERROR")
+                # Check if detection failed due to escape or other error
+                if _check_escape_pressed():
+                    self.log("⏹ Stopped (Esc).", "INFO")
+                else:
+                    self.log("Stopping: failed to detect next pair.", "ERROR")
+                return
+
+            # Check for escape after piece detection
+            if _check_escape_pressed():
+                self.log("⏹ Stopped (Esc).", "INFO")
                 return
 
             # wait remaining time in interval (since last drop)
@@ -528,9 +566,18 @@ class DropPieceController:
 
             # drop
             if not self._drop_pair(next_pair, allow_flip=allow_flip, validate_before_drop=enable_validation):
-                self.log("Stopping: drop failed.", "ERROR")
+                # Check if drop failed due to escape or other error
+                if _check_escape_pressed():
+                    self.log("⏹ Stopped (Esc).", "INFO")
+                else:
+                    self.log("Stopping: drop failed.", "ERROR")
                 return
             last_drop = time.time()
+            
+            # Check for escape after drop operation
+            if _check_escape_pressed():
+                self.log("⏹ Stopped (Esc).", "INFO")
+                return
 
     # --- Back-compat aliases (in case GUI calls older names) ---
     def start_continuous_drop(self, *args, **kwargs):
