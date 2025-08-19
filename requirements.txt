@@ -1,0 +1,27 @@
+# Potion God - Python Dependencies
+
+# GUI Framework
+customtkinter>=5.2.0
+
+# Image Processing
+Pillow>=10.0.0
+
+# Core Windows API access
+pywin32>=300
+
+# Optional but recommended for enhanced process detection
+psutil>=5.8.0
+
+# Object Recognition Dependencies
+numpy>=1.21.0
+mss>=6.1.0
+opencv-python>=4.5.0  # Optional but recommended for enhanced shape analysis
+
+# Build Tools
+pyinstaller>=5.0.0
+
+# Standard library modules (included with Python):
+# - tkinter (GUI toolkit)
+# - dataclasses (data structures) 
+# - typing (type hints)
+# - time (timestamps)

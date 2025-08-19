@@ -1,0 +1,65 @@
+{
+  "_comments": {
+    "enter_poll_ms": "How often (ms) to poll keys (Enter/Esc).",
+    "enter_timeout_s": "Not used in auto-loop; keep null.",
+    "loop_enter_timeout_s": "Not used in auto-loop; keep null.",
+
+    "post_enter_settle_ms": "After the initial Enter (you place the current piece), wait this long before the first automated drop.",
+    "rescan_after_drop_delay_ms": "Pause (ms) after each drop so the game updates the Next area before re-scanning.",
+
+    "mouse_move_duration_ms": "Smooth mouse move time (ms) into the target box.",
+    "pre_left_click_sleep_ms": "Pause (ms) after the cursor arrives, before left click.",
+    "left_click_hold_ms": "How long (ms) to hold the left button before release.",
+    "post_left_click_sleep_ms": "Pause (ms) after the left click finishes.",
+
+    "pre_right_click_sleep_ms": "Pause (ms) before the right-click flip (if needed).",
+    "right_click_hold_ms": "How long (ms) to hold the right button before release.",
+    "flip_click_delay_ms": "Delay (ms) after the right-click flip so the game updates piece order.",
+
+    "post_drop_sleep_ms": "Small pause (ms) right after dropping (before any other actions).",
+
+    "validation_mouse_park_delay_ms": "Delay (ms) after parking mouse in mouse_parking area before validating pieces.",
+    "validation_initial_delay_ms": "Initial delay (ms) before first validation attempt to let game animations complete.",
+    "validation_retry_delay_ms": "Delay (ms) between validation retry attempts.",
+    "validation_max_attempts": "Maximum number of validation attempts before failing.",
+
+    "auto_loop_interval_ms": "Time (ms) between automated drops AFTER the first one (default here: 2000 ms = 2s)."
+  },
+
+  "enter_poll_ms": 10,
+  "enter_timeout_s": null,
+  "loop_enter_timeout_s": null,
+
+  "post_enter_settle_ms": 80,
+  "rescan_after_drop_delay_ms": 80,
+
+  "mouse_move_duration_ms": 100,
+
+  "pre_left_click_sleep_ms": 100,
+  "left_click_hold_ms": 50,
+  "post_left_click_sleep_ms": 50,
+
+  "pre_right_click_sleep_ms": 100,
+  "right_click_hold_ms": 50,
+  "flip_click_delay_ms": 50,
+
+  "post_drop_sleep_ms": 50,
+
+  "validation_mouse_park_delay_ms": 150,
+  "validation_initial_delay_ms": 400,
+  "validation_retry_delay_ms": 100,
+  "validation_max_attempts": 10,
+
+  "auto_loop_interval_ms": 250,
+  "mouse_jitter_px": 2,
+
+  "pair_overrides": {
+    "RR": {
+      "validation_initial_delay_ms": 500,
+      "validation_retry_delay_ms": 200,
+      "left_click_hold_ms": 50,
+      "mouse_move_duration_ms": 120,
+      "mouse_jitter_px": 1
+    }
+  }
+}
