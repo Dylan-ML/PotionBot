@@ -95,6 +95,14 @@ Settings are stored in: `configuration/delays.json`
 
 ### Installation
 
+**Option 1: Download Executable (Recommended)**
+
+1. **Download** the latest `PotionBot.exe` from the releases page
+2. **Run** the executable directly - no installation required!
+3. The executable is completely standalone and includes all dependencies
+
+**Option 2: Install from Source**
+
 1. **Clone or download** this repository
 2. **Navigate** to the project directory:
 
@@ -114,21 +122,37 @@ Settings are stored in: `configuration/delays.json`
    pip install -r requirements.txt
    ```
 
+### Building Executable (For Developers)
+
+If you want to build your own executable from source:
+
+1. **Follow the source installation** steps above
+2. **Run the build script**:
+   ```powershell
+   build_spec.bat
+   ```
+3. **Find the executable** in the `dist` folder
+4. See `BUILD.md` for detailed build instructions and configuration options
+
 ### Running the Application
 
-**Option 1: Using Python directly**
+**Option 1: Using the Executable (Easiest)**
+
+Simply double-click `PotionBot.exe` - no additional setup required!
+
+**Option 2: Using Python directly**
 
 ```powershell
 python src\gui.py
 ```
 
-**Option 2: Using the batch file**
+**Option 3: Using the batch file**
 
 ```powershell
 run.bat
 ```
 
-**Option 3: Using the script from scripts folder**
+**Option 4: Using the script from scripts folder**
 
 ```powershell
 scripts\run_gui.bat

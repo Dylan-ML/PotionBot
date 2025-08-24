@@ -18,7 +18,7 @@ mss>=6.1.0
 opencv-python>=4.5.0  # Optional but recommended for enhanced shape analysis
 
 # Build Tools
-pyinstaller>=5.0.0
+pyinstaller>=6.0.0
 
 # Standard library modules (included with Python):
 # - tkinter (GUI toolkit)

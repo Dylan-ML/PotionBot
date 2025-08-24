@@ -1,59 +1,101 @@
 @echo off
-echo Building PotionGod executable with PyInstaller...
-echo.
+echo PotionBot Complete Build Process
+echo ================================
 
-REM Activate virtual environment if it exists
-if exist ".venv\Scripts\activate.bat" (
-    echo Activating virtual environment...
-    call .venv\Scripts\activate.bat
-)
-
-REM Run pre-build compatibility test
-echo Running pre-build compatibility test...
-python test_pyinstaller.py
-if errorlevel 1 (
-    echo.
-    echo ❌ Pre-build test failed! Please fix the issues above.
+:: Check if virtual environment exists
+if not exist ".venv\Scripts\activate.bat" (
+    echo Error: Virtual environment not found at .venv
+    echo Please run the following commands first:
+    echo   python -m venv .venv
+    echo   .venv\Scripts\activate
+    echo   pip install -r requirements.txt
     pause
     exit /b 1
 )
 
-REM Install PyInstaller if not already installed
+:: Activate virtual environment
+echo Activating virtual environment...
+call .venv\Scripts\activate.bat
+
+:: Test imports and dependencies first
 echo.
-echo Checking PyInstaller installation...
-pip show pyinstaller >nul 2>&1
+echo Step 1: Testing dependencies and imports...
+python test_build.py
 if errorlevel 1 (
-    echo Installing PyInstaller...
-    pip install pyinstaller
+    echo.
+    echo Build cancelled due to test failures.
+    pause
+    exit /b 1
 )
 
-REM Clean previous builds
-echo Cleaning previous builds...
-if exist "dist" rmdir /s /q dist
-if exist "build" rmdir /s /q build
-
-REM Build the executable
+:: Clean previous builds
 echo.
-echo Building executable...
-pyinstaller --clean potion_god.spec
+echo Step 2: Cleaning previous builds...
+if exist "build" (
+    echo Removing build directory...
+    rmdir /s /q "build"
+)
+if exist "dist" (
+    echo Removing dist directory...
+    rmdir /s /q "dist"
+)
 
-REM Check if build was successful
-if exist "dist\PotionGod.exe" (
+:: Update PyInstaller if needed
+echo.
+echo Step 3: Ensuring PyInstaller is up to date...
+pip install --upgrade pyinstaller
+
+:: Build the executable
+echo.
+echo Step 4: Building executable with PyInstaller...
+echo This may take a few minutes...
+pyinstaller PotionBot.spec
+
+:: Check build results
+echo.
+echo Step 5: Checking build results...
+if exist "dist\PotionBot.exe" (
     echo.
-    echo ===================================
-    echo Build completed successfully!
-    echo Executable location: dist\PotionGod.exe
-    echo File size: 
-    for %%I in ("dist\PotionGod.exe") do echo %%~zI bytes
-    echo ===================================
+    echo ✅ Build successful! 🎉
     echo.
-    echo 💡 Test the executable to ensure all features work properly.
-    pause
+    echo Executable location: %cd%\dist\PotionBot.exe
+    
+    :: Show file information
+    for %%A in ("dist\PotionBot.exe") do (
+        echo File size: %%~zA bytes ^(~%%~nzA KB^)
+        echo Modified: %%~tA
+    )
+    
+    echo.
+    echo 📦 Distribution Notes:
+    echo - The executable is completely standalone
+    echo - No Python installation required on target machines
+    echo - All dependencies are included
+    echo - Configuration files are embedded
+    echo.
+    echo 🚀 Ready for distribution!
+    
+    :: Ask if user wants to test the executable
+    echo.
+    set /p test_exe="Would you like to test the executable now? (y/n): "
+    if /i "%test_exe%"=="y" (
+        echo Testing executable...
+        start "PotionBot Test" "dist\PotionBot.exe"
+    )
+    
 ) else (
     echo.
-    echo ===================================
-    echo Build failed! Check the output above for errors.
-    echo ===================================
+    echo ❌ Build failed!
     echo.
-    pause
+    echo Check the output above for error messages.
+    echo Common issues:
+    echo - Missing dependencies in requirements.txt
+    echo - Import errors in source code
+    echo - Missing data files
+    echo.
+    echo Try running 'python test_build.py' to diagnose issues.
 )
+
+echo.
+echo Build process complete.
+pause

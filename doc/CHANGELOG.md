@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-08-24
+
+### Added
+
+- **PyInstaller Integration** - Complete build system for creating standalone executables
+- **Single Executable Distribution** - Build PotionBot as a single .exe file with all dependencies included
+- **Advanced Build Configuration** - Custom PyInstaller spec file with optimized settings
+- **Build Automation** - Comprehensive build script with testing and validation
+- **Pre-Build Testing** - Automated dependency and import validation before building
+- **Windows Executable Properties** - Professional version information and application icon
+- **Build Documentation** - Complete build instructions and troubleshooting guide
+
+### Enhanced
+
+- **Distribution Options** - Users can now choose between Python source or standalone executable
+- **Resource Path Handling** - Improved resource loading for both development and bundled modes
+- **Requirements Management** - Updated PyInstaller to latest version (6.0.0+)
+- **Documentation** - Updated README with executable download and build instructions
+- **User Experience** - Simplified installation with standalone executable option
+
+### Technical
+
+- **PotionBot.spec** - Advanced PyInstaller specification with hidden imports and data files
+- **version_info.txt** - Windows version resource file with application metadata
+- **build.bat** - Unified build script with testing, cleaning, and validation
+- **test_build.py** - Comprehensive pre-build testing for dependencies and file paths
+- **build_exe.py** - Cross-platform Python build script with error handling
+- **Resource Bundling** - Automatic inclusion of configuration files, icons, and assets
+- **UPX Compression** - Optimized executable size with UPX compression
+- **Build Validation** - Post-build verification and file size reporting
+
+### Distribution
+
+- **Standalone Executable** - No Python installation required on target machines
+- **Embedded Dependencies** - All libraries (CustomTkinter, PIL, pywin32, etc.) included
+- **Configuration Embedding** - JSON configuration files bundled within executable
+- **Professional Packaging** - Windows executable with proper icon and version information
+
 ## [1.2.0] - 2025-08-19
 
 ### Fixed
