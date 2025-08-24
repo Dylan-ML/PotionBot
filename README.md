@@ -2,8 +2,126 @@
 
 ## 📋 Overview
 
-Potion God provides an intuitive interface for managing game autom- **⚠️ Warning** - Warnings and alerts (Orange)
+Potion God provides an intuitive interface for managing game automation features including:
 
+- **Window Detection** - Locate and capture game windows
+- **Asset Recognition** - Detect game board elements
+- **Game Analysis** - Analyze current game state
+- **Bot Control** - Auto Drop Potions in correct locations.
+
+## ✨ Features
+
+- **Real-time Logging** - Activity log with colored status messages and timestamps
+- **Modular Controls** - Organized sections for different automation features
+- **Status Indicators** - Visual feedback for all system states
+- **Responsive Layout** - Adaptive UI that scales with window size
+
+## 📷 Screenshots
+
+### Main Tool Interface
+
+![Potion God Tool Interface](README_tool_image.png)
+
+### Overlay Feature
+
+![Game Overlay](README_overlay_image.png)
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Python 3.7 or higher
+- Windows OS (currently optimized for Windows)
+
+### Installation
+
+**Option 1: Download Executable (Recommended)**
+
+1. **Download** the latest `PotionBot.exe` from the releases page
+2. **Run** the executable directly - no installation required!
+3. The executable is completely standalone and includes all dependencies
+
+**Option 2: Install from Source**
+
+1. **Clone or download** this repository
+2. **Navigate** to the project directory:
+
+   ```powershell
+   cd PotionBot
+   ```
+
+3. **Create a virtual environment** (recommended):
+
+   ```powershell
+   python -m venv .venv
+   .venv\Scripts\activate
+   ```
+
+4. **Install dependencies**:
+   ```powershell
+   pip install -r requirements.txt
+   ```
+
+### Building Executable (For Developers)
+
+If you want to build your own executable from source:
+
+1. **Follow the source installation** steps above
+2. **Run the build script**:
+   ```powershell
+   build.bat
+   ```
+3. **Find the executable** in the `dist` folder
+4. See `BUILD.md` for detailed build instructions and configuration options
+
+### Running the Application
+
+**Option 1: Using the Executable (Easiest)**
+
+Simply double-click `PotionBot.exe` - no additional setup required!
+
+**Option 2: Using Python directly**
+
+```powershell
+python src\gui.py
+```
+
+**Option 3: Using the batch file**
+
+```powershell
+run.bat
+```
+
+**Option 4: Using the script from scripts folder**
+
+```powershell
+scripts\run_gui.bat
+```
+
+## 🎮 Usage
+
+### Getting Started
+
+1. **Launch** the application using one of the methods above
+2. **Find Game Window** - Click to detect the target game window
+3. **Object Recognition** - Load ROI boxes, right click for overlay
+4. **Find Next Pair** - Run prior to auto-potion drop
+5. **Auto Potion Drop** - Once pressed, place the first piece manaully then press enter to start
+
+### Interface Overview
+
+#### Main Panel
+
+- **📋 Activity Log** - Real-time status updates and system messages
+- **Clear Button** - Reset the activity log
+
+### Status Messages
+
+The activity log uses color-coded messages:
+
+- **ℹ️ Info** - General information (Gray)
+- **✅ Success** - Successful operations (Green)
+- **⚠️ Warning** - Warnings and alerts (Orange)
 - **❌ Error** - Errors and failures (Red)
 
 ## ⚙️ Settings
@@ -62,129 +180,7 @@ Advanced users can configure specific timing overrides for different piece combi
 
 Settings are stored in: `configuration/delays.json`
 
-🛠️ Developmentn features including:
-
-- **Window Detection** - Locate and capture game windows
-- **Asset Recognition** - Detect game board elements
-- **Game Analysis** - Analyze current game state
-- **Bot Control** - Auto Drop Potions in correct locations.
-
-## ✨ Features
-
-- **Real-time Logging** - Activity log with colored status messages and timestamps
-- **Modular Controls** - Organized sections for different automation features
-- **Status Indicators** - Visual feedback for all system states
-- **Responsive Layout** - Adaptive UI that scales with window size
-
-## � Screenshots
-
-### Main Tool Interface
-
-![Potion God Tool Interface](README_tool_image.png)
-
-### Overlay Feature
-
-![Game Overlay](README_overlay_image.png)
-
-## �🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.7 or higher
-- Windows OS (currently optimized for Windows)
-
-### Installation
-
-**Option 1: Download Executable (Recommended)**
-
-1. **Download** the latest `PotionBot.exe` from the releases page
-2. **Run** the executable directly - no installation required!
-3. The executable is completely standalone and includes all dependencies
-
-**Option 2: Install from Source**
-
-1. **Clone or download** this repository
-2. **Navigate** to the project directory:
-
-   ```powershell
-   cd PotionGod
-   ```
-
-3. **Create a virtual environment** (recommended):
-
-   ```powershell
-   python -m venv .venv
-   .venv\Scripts\activate
-   ```
-
-4. **Install dependencies**:
-   ```powershell
-   pip install -r requirements.txt
-   ```
-
-### Building Executable (For Developers)
-
-If you want to build your own executable from source:
-
-1. **Follow the source installation** steps above
-2. **Run the build script**:
-   ```powershell
-   build_spec.bat
-   ```
-3. **Find the executable** in the `dist` folder
-4. See `BUILD.md` for detailed build instructions and configuration options
-
-### Running the Application
-
-**Option 1: Using the Executable (Easiest)**
-
-Simply double-click `PotionBot.exe` - no additional setup required!
-
-**Option 2: Using Python directly**
-
-```powershell
-python src\gui.py
-```
-
-**Option 3: Using the batch file**
-
-```powershell
-run.bat
-```
-
-**Option 4: Using the script from scripts folder**
-
-```powershell
-scripts\run_gui.bat
-```
-
-## 🎮 Usage
-
-### Getting Started
-
-1. **Launch** the application using one of the methods above
-2. **Find Game Window** - Click to detect the target game window
-3. **Object Recognition** - Load ROI boxes, right click for overlay
-4. **Find Next Pair** - Run prior to auto-potion drop
-5. **Auto Potion Drop** - Once pressed, place the first piece manaully then press enter to start
-
-### Interface Overview
-
-#### Main Panel
-
-- **📋 Activity Log** - Real-time status updates and system messages
-- **Clear Button** - Reset the activity log
-
-### Status Messages
-
-The activity log uses color-coded messages:
-
-- **ℹ️ Info** - General information (Gray)
-- **✅ Success** - Successful operations (Green)
-- **⚠️ Warning** - Warnings and alerts (Orange)
-- **❌ Error** - Errors and failures (Red)
-
-## �🛠️ Development
+## 🛠️ Development
 
 ### Customization
 
